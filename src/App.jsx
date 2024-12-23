@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import Repositories from "./pages/Repositories";
@@ -14,8 +14,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="login" element={<LoginPage />} />
-          <Route path="/" element={<AppLayout />}>
-            <Route path="repositories" index element={<Repositories />} />
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate replace to="repositories" />} />
+            <Route path="repositories" element={<Repositories />} />
             <Route path="codeReview" element={<CodeReview />} />
             <Route path="cloudSecurity" element={<CloudSecurity />} />
             <Route path="howToUse" element={<HowToUse />} />
